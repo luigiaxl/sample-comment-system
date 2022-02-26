@@ -18,7 +18,7 @@ class CommentTest extends TestCase
      */
     public function test_a_new_comment_must_have_user_name()
     {
-        $response = $this->postJson('/comments', Comment::factory()->make([ 'name' => null ])->toArray());
+        $response = $this->postJson('/api/comments', Comment::factory()->make([ 'name' => null ])->toArray());
 
         $response->assertUnprocessable();
     }
