@@ -31,6 +31,9 @@ export const useCommentsStore = defineStore('comments', {
     },
 
     prependReply (comment, reply) {
+      if (!comment.comments)
+        comment.comments = []
+        
       comment.comments.splice(0, 0, reply)
     },
 

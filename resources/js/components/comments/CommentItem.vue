@@ -47,7 +47,7 @@ const attemptSubmitReply = () => {
       <p>{{ comment.content }}</p>
     </div>
 
-    <div class="mt-1" v-if="comment.level < 2">
+    <div class="mt-1" v-if="!comment.level || comment.level < 2">
       <button
         class="transition-colors hover:bg-gray-400 text-gray-600 hover:text-white border rounded text-sm px-1"
         @click="showReplyForm = !showReplyForm"
