@@ -20,5 +20,8 @@
         "tailwindcss": "^3.0.18",
         "vue": "^3.2.30",
         "vue-loader": "^16.1.2"
+    },
+    "dependencies": {
+        "moment": "^2.29.1"
     }
 }

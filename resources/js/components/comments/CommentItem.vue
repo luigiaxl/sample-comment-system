@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 import { useCommentsStore } from '../../comment.store';
+import moment from 'moment';
 
 import CommentItem from './CommentItem.vue';
 
@@ -33,13 +34,13 @@ const attemptSubmitReply = () => {
   <div
     class="p-2"
     :style="{
-      marginLeft: ((comment.level + 1) * 15) + 'px'
+      marginLeft: ((comment.level + 1) * 20) + 'px'
     }"
   >
     <div class="text-sm">
       <span>{{ comment.name }}</span>
       <span class="mx-2">&#149;</span>
-      <span class="text-gray-400">{{ comment.created_at }}</span>
+      <span class="text-gray-400">{{ moment(comment.created_at).fromNow() }}</span>
     </div>
     
     <div class="mt-2">
@@ -83,6 +84,7 @@ const attemptSubmitReply = () => {
       v-for="(reply) in comment.comments"
       :key="'reply-' + reply.id"
       :comment="reply"
+      class="border-t"
     ></CommentItem>
   </ul>
 </li>
