@@ -25,7 +25,7 @@ class StoreCommentRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'comment' => 'required'
+            'content' => 'required'
         ];
     }
 }

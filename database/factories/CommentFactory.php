@@ -18,7 +18,7 @@ class CommentFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'comment' => $this->faker->paragraph(),
+            'content' => $this->faker->paragraph(),
         ];
     }
 }
