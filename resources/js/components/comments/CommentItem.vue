@@ -34,7 +34,7 @@ const attemptSubmitReply = () => {
   <div
     class="p-2"
     :style="{
-      marginLeft: ((comment.level + 1) * 20) + 'px'
+      marginLeft: ((comment.level ? comment.level + 1 : 1) * 20) + 'px'
     }"
   >
     <div class="text-sm">

@@ -21,7 +21,7 @@ onMounted(() => {
     <ul>
       <CommentItem
         v-for="(comment, i) in comments"
-        :key="'comment-' + i"
+        :key="'comment-' + comment.id"
         :comment="comment"
         :class="{
           'border-t': i > 0
