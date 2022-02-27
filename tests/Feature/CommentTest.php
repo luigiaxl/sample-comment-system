@@ -57,32 +57,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function test_a_reply_to_non_existent_comment_will_fail()
-    {
-        $nonExistentCommentId = 9999;
-        $data = Comment::factory()->make()->toArray();
-
-        $response = $this->postJson(route('reply.store', ['comment' => $nonExistentCommentId]), $data);
-
-        $response->assertNotFound()
-            ->assertInvalid('comment_id');
-    }
-
-    public function test_a_reply_with_valid_comment_id_will_be_successful()
-    {
-        $comment = Comment::factory()->create();
-        $data = Comment::factory()->make()->toArray();
-
-        $response = $this->postJson(route('reply.store', ['comment' => $comment->id]), $data);
-
-        $response->assertOk()
-            ->assertJsonFragment([
-                'name' => $data['name'],
-                'content' => $data['content'],
-                'comment_id' => $comment->id,
-            ]);
-    }
-
     public function test_a_user_can_fetch_list_of_comments()
     {
         Comment::factory()
@@ -101,5 +75,30 @@ class CommentTest extends TestCase
 
         $response->assertOk()
             ->assertJsonCount(10);
+    }
+
+    public function test_a_reply_to_non_existent_comment_will_fail()
+    {
+        $nonExistentCommentId = 9999;
+        $data = Comment::factory()->make()->toArray();
+
+        $response = $this->postJson(route('reply.store', ['comment' => $nonExistentCommentId]), $data);
+
+        $response->assertNotFound();
+    }
+
+    public function test_a_reply_with_valid_comment_id_will_be_successful()
+    {
+        $comment = Comment::factory()->create();
+        $data = Comment::factory()->make()->toArray();
+
+        $response = $this->postJson(route('reply.store', ['comment' => $comment->id]), $data);
+
+        $response->assertOk()
+            ->assertJsonFragment([
+                'name' => $data['name'],
+                'content' => $data['content'],
+                'comment_id' => $comment->id,
+            ]);
     }
 }

@@ -13,4 +13,12 @@ class Comment extends Model
         'name',
         'content',
     ];
+
+    /**
+     * Get list of comment replies
+     */
+    public function replies()
+    {
+        return $this->hasMany($this::class);
+    }
 }
