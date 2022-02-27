@@ -1,5 +1,5 @@
 <script setup>
-import CreateCommentForm from './comments/CreateCommentForm.vue';
+import CreateComment from './comments/CreateComment.vue';
 import CommentsList from './comments/CommentsList.vue';
 </script>
 
@@ -11,7 +11,7 @@ import CommentsList from './comments/CommentsList.vue';
 
   <div class="border-b border-gray-300 my-2"></div>
 
-  <CreateCommentForm></CreateCommentForm>
+  <CreateComment></CreateComment>
 
   <div class="border-b border-gray-300 my-2"></div>
 

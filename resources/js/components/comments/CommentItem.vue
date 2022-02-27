@@ -1,14 +1,20 @@
+<script setup>
+const props = defineProps({
+  comment: Object
+})
+</script>
+
 <template>
 <li>
   <div class="p-2">
     <div class="text-sm">
-      <span>Luigi Axl</span>
+      <span>{{ comment.name }}</span>
       <span class="mx-2">&#149;</span>
-      <span class="text-gray-400">1 day ago</span>
+      <span class="text-gray-400">{{ comment.created_at }}</span>
     </div>
     
     <div class="mt-2">
-      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+      <p>{{ comment.content }}</p>
     </div>
 
     <div class="mt-1">

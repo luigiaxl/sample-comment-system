@@ -45,7 +45,7 @@ export const useCommentsStore = defineStore('comments', {
     postComment (newComment) {
       const uri = '/api/comments';
 
-      axios.post(uri, comment)
+      axios.post(uri, newComment)
         .then(result => this.prependComment(result.data))
     }
   }
