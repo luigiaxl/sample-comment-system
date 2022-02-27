@@ -21,7 +21,7 @@
             }
         </style>
     </head>
-    <body>
+    <body class="bg-gray-200 text-gray-900 text-lg">
         <div id="app"></div>
     </body>
 </html>
