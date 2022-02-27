@@ -101,4 +101,16 @@ class CommentTest extends TestCase
                 'comment_id' => $comment->id,
             ]);
     }
+
+    public function test_a_reply_level_is_one_higher_than_replied_comment()
+    {
+        $comment = Comment::factory()->create();
+        $data = Comment::factory()->make()->toArray();
+
+        $response = $this->postJson(route('reply.store', ['comment' => $comment->id]), $data);
+
+        $response->assertJsonFragment([
+            'level' => $comment->level + 1,
+        ]);
+    }
 }

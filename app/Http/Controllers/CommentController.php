@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     /**
-     * Fetch a list of comments
+     * Fetch a list of base comments
      */
     public function index()
     {
-        $comments = Comment::orderByDesc('updated_at')->get();
+        $comments = Comment::whereNull('comment_id')->orderByDesc('created_at')->get();
 
         return response()->json($comments);
     }
@@ -34,6 +34,19 @@ class CommentController extends Controller
     }
 
     /**
+     * Get a list of replies for the comment
+     * 
+     * @param Comment $comment
+     * return Comments array
+     */
+    public function replies (Comment $comment)
+    {
+        $replies = $comment->replies()->orderByDesc('created_at')->get();
+
+        return response()->json($replies);
+    }
+
+    /**
      * Create a new comment as a reply for another comment
      * 
      * @param StoreCommentRequest $request
@@ -43,6 +56,7 @@ class CommentController extends Controller
     public function reply(StoreCommentRequest $request, Comment $comment)
     {
         $data = $request->validated();
+        $data['level'] = $comment->level + 1;
         
         $reply = $comment->replies()->create($data);
 

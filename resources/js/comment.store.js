@@ -1,5 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
+import { comment } from "postcss";
 
 export const useCommentsStore = defineStore('comments', {
   state: () => ({
@@ -25,6 +26,14 @@ export const useCommentsStore = defineStore('comments', {
       this.comments.splice(0, 0, comment)
     },
 
+    setReplies (comment, replies) {
+      comment.comments = replies
+    },
+
+    prependReply (comment, reply) {
+      comment.comments.splice(0, 0, reply)
+    },
+
     /**
      * Fetch list of comments from server.
      * Save list to the store.
@@ -47,6 +56,20 @@ export const useCommentsStore = defineStore('comments', {
 
       axios.post(uri, newComment)
         .then(result => this.prependComment(result.data))
+    },
+
+    getReplies (comment) {
+      const uri = `/api/comments/${comment.id}/replies`
+
+      axios.get(uri)
+        .then(result => this.setReplies(comment, result.data))
+    },
+
+    postReply (comment, newReply) {
+      const uri = `/api/comments/${comment.id}/reply`
+
+      axios.post(uri, newReply)
+        .then(result => this.prependReply(comment, result.data))
     }
   }
 })

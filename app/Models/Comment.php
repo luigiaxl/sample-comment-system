@@ -12,6 +12,7 @@ class Comment extends Model
     protected $fillable = [
         'name',
         'content',
+        'level'
     ];
 
     /**
